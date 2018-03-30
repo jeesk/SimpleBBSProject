@@ -26,6 +26,7 @@ public class HelloServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		token = config.getInitParameter("token");
+		System.out.println("世界你好!!");
 	}
 
 	@Override
