@@ -8,5 +8,7 @@
 	<classpathentry kind="lib" path="webapps/WEB-INF/lib/servlet-api.jar" sourcepath="F:/drive_and_pack/apache-tomcat-9.0.6-src.zip"/>
 	<classpathentry kind="lib" path="webapps/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar"/>
 	<classpathentry kind="lib" path="webapps/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar"/>
+	<classpathentry kind="lib" path="webapps/WEB-INF/lib/lombok.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="webapps/WEB-INF/classes"/>
 </classpath>

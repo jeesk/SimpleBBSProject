@@ -13,6 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-        世界你好
+                <a href="${pageContext.request.contextPath}/list">查看列表</a>
 </body>
 </html>
