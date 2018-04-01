@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html >
 <html>
 <head>
@@ -66,6 +68,7 @@
             <div class="jive-table">
               <table summary="List of threads" cellpadding="0" cellspacing="0" width="100%">
                 <thead>
+                
                   <tr>
                     <th class="jive-first" colspan="3"> 主题 </th>
                     <th class="jive-author"> <nobr> 作者
@@ -75,26 +78,35 @@
                     <th class="jive-msg-count" nowrap="nowrap"> 回复 </th>
                     <th class="jive-last" nowrap="nowrap"> 最新帖子 </th>
                   </tr>
+                  
                 </thead>
                 <tbody>
-                  <tr class="jive-even">
+                 
+                      
+                      <c:forEach  items="${posts}" var="s" varStatus="vs">
+                      
+                       <tr class=" ${vs.count%2==0 ? 'jive-odd':'jive-even'} ">
                     <td class="jive-first" nowrap="nowrap" width="1%"><div class="jive-bullet"> <img src="images/read-16x16.gif" alt="已读" border="0" height="16" width="16">
                         <!-- div-->
                       </div></td>
                     <td nowrap="nowrap" width="1%">&nbsp;
-                      
-                      
-                      
-                      
+                        
                       &nbsp;</td>
-                    <td class="jive-thread-name" width="95%"><a id="jive-thread-1" href="http://bbs.chinajavaworld.com/thread.jspa?threadID=744236&amp;tstart=25">初学java遇一难题！！望大家能帮忙一下 谢谢了</a></td>
-                    <td class="jive-author" nowrap="nowrap" width="1%"><span class=""> <a href="http://bbs.chinajavaworld.com/profile.jspa?userID=226030">fei870407</a> </span></td>
-                    <td class="jive-view-count" width="1%"> 104</td>
-                    <td class="jive-msg-count" width="1%"> 5</td>
-                    <td class="jive-last" nowrap="nowrap" width="1%"><div class="jive-last-post"> 2007-9-13 上午9:31 <br>
+                    <td class="jive-thread-name" width="95%"><a id="jive-thread-1" href="http://bbs.chinajavaworld.com/thread.jspa?threadID=744236&amp;tstart=25">${s.gradexx} ${s.title}</a></td>
+                    <td class="jive-author" nowrap="nowrap" width="1%"><span class=""> <a href="http://bbs.chinajavaworld.com/profile.jspa?userID=226030">jeesk</a> </span></td>
+                    <td class="jive-view-count" width="1%"> 1</td>
+                    <td class="jive-msg-count" width="1%"> 0</td>
+                    <td class="jive-last" nowrap="nowrap" width="1%">  
+                    <div class="jive-last-post"> <fmt:formatDate value="${s.pdate}" pattern="yyyy-MM-dd HH:mm:ss"/><br>
                         by: <a href="http://bbs.chinajavaworld.com/thread.jspa?messageID=780182#780182" title="jingjiangjun" style="">jingjiangjun &#187;</a> </div></td>
                   </tr>
-                  <tr class="jive-odd">
+                      
+                      </c:forEach>
+                      
+                    
+                  
+                  
+          <%--         <tr class="jive-odd">
                     <td class="jive-first" nowrap="nowrap" width="1%"><div class="jive-bullet"> <img src="images/read-16x16.gif" alt="已读" border="0" height="16" width="16">
                         <!-- div-->
                       </div></td>
@@ -111,6 +123,7 @@
                     <td class="jive-last" nowrap="nowrap" width="1%"><div class="jive-last-post"> 2007-9-13 上午8:40 <br>
                         by: <a href="http://bbs.chinajavaworld.com/thread.jspa?messageID=780172#780172" title="downing114" style="">downing114 &#187;</a> </div></td>
                   </tr>
+                  --%>
                 </tbody>
               </table>
             </div>
