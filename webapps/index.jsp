@@ -13,6 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-                <a href="${pageContext.request.contextPath}/list">查看列表</a>
+        <a href="${pageContext.request.contextPath}/list">进入论坛</a>
 </body>
 </html>
