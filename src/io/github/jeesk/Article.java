@@ -3,6 +3,8 @@
  */
 package io.github.jeesk;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 import lombok.Data;
@@ -26,7 +28,24 @@ public class Article {
 	private int grade;
 	private String gradexx;
 	
+	public void initArticleFromRs(ResultSet rs) {
+		
+		try {
+			setTitle(rs.getString("title"));
+			setId(rs.getInt("id"));
+			setPid(rs.getInt("pid"));
+			setCont(rs.getString("cont"));
+			setRootid(rs.getInt("rootid"));
+			setIsleaf(rs.getInt("isleaf")==0 ? true :false);
+			setGrade(0);
+			setPdate(rs.getTimestamp("pdate"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 
+		
+	}
 
 	public String getGradexx() {
 		String str="";

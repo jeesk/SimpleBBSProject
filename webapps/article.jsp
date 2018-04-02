@@ -92,7 +92,7 @@
                     <td nowrap="nowrap" width="1%">&nbsp;
                         
                       &nbsp;</td>
-                    <td class="jive-thread-name" width="95%"><a id="jive-thread-1" href="http://bbs.chinajavaworld.com/thread.jspa?threadID=744236&amp;tstart=25">${s.gradexx} ${s.title}</a></td>
+                    <td class="jive-thread-name" width="95%"><a id="jive-thread-1" href="${pageContext.request.contextPath}/list?method=details&id=${s.id}">${s.gradexx} ${s.title}</a></td>
                     <td class="jive-author" nowrap="nowrap" width="1%"><span class=""> <a href="http://bbs.chinajavaworld.com/profile.jspa?userID=226030">jeesk</a> </span></td>
                     <td class="jive-view-count" width="1%"> 1</td>
                     <td class="jive-msg-count" width="1%"> 0</td>

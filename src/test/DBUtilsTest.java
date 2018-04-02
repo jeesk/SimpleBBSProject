@@ -3,9 +3,11 @@
  */
 package test;
 
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,8 +34,16 @@ class DBUtilsTest {
 	 */
 	@Test
 	void testGetConnection() throws SQLException {
-	
-
+			Connection conn  = DBUtils.getConnection();
+				String sql = " INSERT INTO article (pid,rootid,title,cont,pdate,isleaf)value(?,?,?,?,now(),?)";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setInt(1,20);
+				ps.setInt(2, 2);
+				ps.setString(3, "213");
+				ps.setString(4, "2313");
+				ps.setInt(5, 0);
+				ps.executeUpdate();
+				System.out.println("ok");
 	}
 
 	/**
@@ -57,7 +67,7 @@ class DBUtilsTest {
 	 */
 	@Test
 	void testClose() {
-		fail("Not yet implemented");
+		
 	}
 
 }

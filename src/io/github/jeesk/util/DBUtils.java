@@ -5,6 +5,7 @@ package io.github.jeesk.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -52,6 +53,19 @@ public enum DBUtils {
 			e.printStackTrace();
 		}
 		return stmt;
+	}
+	public static PreparedStatement prepareStmt(Connection conn,String sql) {
+		
+		PreparedStatement prepareStatement=null;
+		try {
+			prepareStatement = conn.prepareStatement(sql);
+			return prepareStatement;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return prepareStatement;
+		
+		
 	}
 
 	public static ResultSet executeQuery(String sql, Statement stmt) {
