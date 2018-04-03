@@ -42,7 +42,7 @@ public class ListServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		req.setCharacterEncoding("utf8");
 		String parms = req.getParameter("method");
 
@@ -51,40 +51,105 @@ public class ListServlet extends HttpServlet {
 		} else if ("reply".equals(parms)) {
 			reply(req, resp);
 		} else if ("addReply".equals(parms)) {
-			addReply(req, resp);
+			try {
+				addReply(req, resp);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}else if("posts".equals(parms)) {
+			posts(req,resp);
 		} else {
 			list(req, resp);
 		}
 
 	}
-	
-	
+
 	/**
 	 * @param req
 	 * @param resp
 	 */
-	private void addReply(HttpServletRequest req, HttpServletResponse resp) {
+	private void posts(HttpServletRequest req, HttpServletResponse resp) {
+		String title  = req.getParameter("title");
+		String content = req.getParameter("content");
+		Connection conn = DBUtils.INSTANCE.getConnection();
+		Connection conn1 = DBUtils.INSTANCE.getConnection();
+		PreparedStatement ps=null;
+		Statement state =null;
+		ResultSet rs =null;
+		
+		String sql = "INSERT INTO article VALUE (null,?,?,?,?,now(),?)";
+		try {
+			ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			int rootid =-1;
+			ps.setInt(1, 0);
+			ps.setInt(2, rootid);
+			ps.setString(3, title);
+			ps.setString(4, content);
+			ps.setInt(5, 0);
+			ps.executeUpdate();
+			rs = ps.getGeneratedKeys();
+			rs.next();
+			rootid = rs.getInt(1);
+			String sql2 = " update article set rootid = " +rootid+ " where id =" + rootid;
+			state = conn.createStatement();
+			state.executeUpdate(sql2);
+
+			resp.sendRedirect(req.getContextPath() +"/replyed.jsp");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtils.INSTANCE.close(conn, ps, rs);
+			DBUtils.INSTANCE.close(conn1, state, null);
+			
+		}
+		
+		
+	}	
+
+	/**
+	 * @param req
+	 * @param resp
+	 * @throws SQLException 
+	 */
+	private void addReply(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
 
 		Integer pid = Integer.parseInt(req.getParameter("pid"));
 		Integer rootid = Integer.parseInt(req.getParameter("rootid"));
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
 		Connection conn = DBUtils.INSTANCE.getConnection();
-		String sql = " INSERT INTO article (pid,rootid,title,cont,pdate,isleaf)value(?,?,?,?,now(),?)";
+		boolean autoCommit = conn.getAutoCommit();
+		conn.setAutoCommit(false);
+		String sql = " INSERT INTO article value(null,?,?,?,?,now(),?)";
 		PreparedStatement ps = DBUtils.prepareStmt(conn, sql);
 		try {
-			ps.setInt(1,pid);
-			ps.setInt(2, rootid);
-			ps.setString(3, title);
-			ps.setString(4, content);
-			ps.setInt(5, 0);
-			ps.executeUpdate();
-			
-			System.out.println("完成了");
+
+			try {
+				ps.setInt(1, pid);
+				ps.setInt(2, rootid);
+				ps.setString(3, title);
+				ps.setString(4, content);
+				ps.setInt(5, 0);
+				ps.executeUpdate();
+				String sql1 = "update article set isleaf=1 where id = "+pid;
+				PreparedStatement prepareStatement = conn.prepareStatement(sql1);
+				prepareStatement.executeUpdate();
+				conn.commit();
+				conn.setAutoCommit(autoCommit);
+				resp.sendRedirect(req.getContextPath() +"/replyed.jsp");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.INSTANCE.close(conn, ps, null);
 		}
 

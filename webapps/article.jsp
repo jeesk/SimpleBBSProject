@@ -46,8 +46,10 @@
     <table summary="Buttons" border="0" cellpadding="0" cellspacing="0">
       <tbody>
         <tr>
-          <td class="jive-icon"><a href="http://bbs.chinajavaworld.com/post%21default.jspa?forumID=20"><img src="images/post-16x16.gif" alt="发表新主题" border="0" height="16" width="16"></a></td>
-          <td class="jive-icon-label"><a id="jive-post-thread" href="http://bbs.chinajavaworld.com/post%21default.jspa?forumID=20">发表新主题</a> <a href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;isBest=1"></a></td>
+          <td class="jive-icon"><a href="http://bbs.chinajavaworld.com/post%21default.jspa?forumID=20">
+          <img src="images/post-16x16.gif" alt="发表新主题" border="0" height="16" width="16"></a></td>
+          <td class="jive-icon-label"><a id="jive-post-thread" href="${pageContext.request.contextPath}/post.jsp">发表新主题</a> 
+          <a href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;isBest=1"></a></td>
         </tr>
       </tbody>
     </table>
@@ -63,6 +65,7 @@
       <tr valign="top">
         <td><span class="nobreak"> 页:
           1,316 - <span class="jive-paginator"> [ <a href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=0&amp;isBest=0">上一页</a> | <a href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=0&amp;isBest=0" class="">1</a> <a href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=25&amp;isBest=0" class="jive-current">2</a> <a href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=50&amp;isBest=0" class="">3</a> <a href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=75&amp;isBest=0" class="">4</a> <a href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=100&amp;isBest=0" class="">5</a> <a href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=125&amp;isBest=0" class="">6</a> | <a href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=50&amp;isBest=0">下一页</a> ] </span> </span> </td>
+          ${str}
       </tr>
     </tbody>
   </table>
