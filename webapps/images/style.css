@@ -17,9 +17,9 @@
 BODY {
     background-color : #ffffff;
     font-size : 100%;
-	margin-left: 0px;
-	margin-right: 0px;
-	margin-top: 0px;
+	margin-left: 150px;
+	margin-right: 150px;
+	margin-top: 10px;
 }
 BODY, DIV, P, TD, TH {
     font-family : arial,helvetica,sans-serif;

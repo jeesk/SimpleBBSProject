@@ -27,7 +27,6 @@ public class Article {
 	private boolean isleaf;
 	private int grade;
 	private String gradexx;
-	
 	public void initArticleFromRs(ResultSet rs) {
 		
 		try {

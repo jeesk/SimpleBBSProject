@@ -200,7 +200,7 @@ public class ListServlet extends HttpServlet {
 				return;
 			}
 			req.setAttribute("article", article);
-
+			
 			req.getRequestDispatcher("/articledetails.jsp").forward(req, resp);
 		} catch (SQLException e) {
 			e.printStackTrace();

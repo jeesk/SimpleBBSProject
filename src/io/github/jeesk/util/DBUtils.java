@@ -72,12 +72,13 @@ public enum DBUtils {
 
 		ResultSet rs = null;
 		try {
-			stmt.executeQuery(sql);
+			rs =	stmt.executeQuery(sql);
+			return rs;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return rs;
+		return null;
 	}
 	
 
