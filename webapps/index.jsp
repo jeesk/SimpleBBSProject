@@ -12,7 +12,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-        <a href="${pageContext.request.contextPath}/list">进入论坛</a>
+<body>  
+        
+        <form action="/login" method="post">
+                        帐号:   <input type="text" name="username" required value=""/><br/>
+                        密码:   <input type="text" name="password" required value=""/><br/>
+                <input type="submit" value="登录"/>
+        
+        </form>
+
+    
+        
 </body>
 </html>

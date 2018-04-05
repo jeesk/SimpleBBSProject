@@ -38,8 +38,7 @@ public class ArticleFlatServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
-		req.setCharacterEncoding("utf8");
+		req.setCharacterEncoding("utf8"); 
 		String strCurrent = req.getParameter("current");
 
 		int current;

@@ -129,8 +129,13 @@
 													</div></td>
 												<td nowrap="nowrap" width="1%">&nbsp;
 												
-												<a href="${pageContext.request.contextPath}/delete?id=${s.id}&pid=${s.pid}&isleaf=${s.isleaf}&url=${uri}?${pageContext.request.queryString==null ? '' :pageContext.request.queryString}">DEL</a> 
-												 &nbsp;</td>
+												
+																								
+												 <a href="${pageContext.request.contextPath}/delete?id=${s.id}&pid=${s.pid}&isleaf=${s.isleaf}&url=${uri}?${pageContext.request.queryString==null ? '' :pageContext.request.queryString}">DEL</a>
+												 &nbsp;
+												 
+												 
+												 </td>
 												<td class="jive-thread-name" width="95%"><a
 													id="jive-thread-1"
 													href="${pageContext.request.contextPath}/articleflatdetails?id=${s.id}">
