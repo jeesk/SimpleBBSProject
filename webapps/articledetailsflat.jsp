@@ -159,8 +159,7 @@
 																<tr>
 																	<td colspan="4"
 																		style="border-top: 1px solid rgb(204, 204, 204); font-size: 9pt; table-layout: fixed;">
-																		·<a href="http://www.bjsxt.com"><font
-																			color="#666666">http://www.bjsxt.com</font></a>
+																		·<a href="http://github.com/jeesk"><font color="#666666">http://github.com/jeesk</font></a>
 																	</td>
 																</tr>
 															</tbody>

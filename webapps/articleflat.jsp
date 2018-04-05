@@ -79,26 +79,21 @@
 		<table border="0" cellpadding="3" cellspacing="0" width="100%">
 			<tbody>
 				<tr valign="top">
-					<td><span class="nobreak"> 页: 1,316 - <span
-							class="jive-paginator"> [ <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=0&amp;isBest=0">上一页</a>
-								| <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=0&amp;isBest=0"
-								class="">1</a> <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=25&amp;isBest=0"
-								class="jive-current">2</a> <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=50&amp;isBest=0"
-								class="">3</a> <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=75&amp;isBest=0"
-								class="">4</a> <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=100&amp;isBest=0"
-								class="">5</a> <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=125&amp;isBest=0"
-								class="">6</a> | <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=50&amp;isBest=0">下一页</a>
-								]
+				
+        		
+					<td><span class="nobreak">  当前是第${maps["current"]}页 
+					      <span
+							class="jive-paginator"> [ 
+							<a href="${pageContext.request.contextPath}/articleflat?current=1">首页  </a>| 
+							<a href="${pageContext.request.contextPath}/articleflat?current=${maps['current'] -1 > 1 ? maps['current'] -1 : 1} " >上一页  </a> |
+							<!-- class="jive-current"  这是当前页的class -->
+							<a href="${pageContext.request.contextPath}/articleflat?current=${maps['current'] +1 < maps['count'] ? maps['current'] +1 : maps['count']} "  >下一页  </a> | 
+							<a href="${pageContext.request.contextPath}/articleflat?current=${maps['count']}">末页</a>
+								                    ]  共${maps["count"]}页  
 						</span>
-					</span></td> ${str}
+					</span></td> 
+					
+					
 				</tr>
 			</tbody>
 		</table>
@@ -132,7 +127,10 @@
 															height="16" width="16">
 														<!-- div-->
 													</div></td>
-												<td nowrap="nowrap" width="1%">&nbsp; &nbsp;</td>
+												<td nowrap="nowrap" width="1%">&nbsp;
+												
+												<a href="${pageContext.request.contextPath}/delete?id=${s.id}&pid=${s.pid}&isleaf=${s.isleaf}&url=${uri}?${pageContext.request.queryString==null ? '' :pageContext.request.queryString}">DEL</a> 
+												 &nbsp;</td>
 												<td class="jive-thread-name" width="95%"><a
 													id="jive-thread-1"
 													href="${pageContext.request.contextPath}/articleflatdetails?id=${s.id}">

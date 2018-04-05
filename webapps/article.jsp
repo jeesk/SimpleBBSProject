@@ -12,6 +12,11 @@
  *
  -->
 
+<%
+    String uri = "";
+
+
+ %>
 <title>Java|Java世界_中文论坛|ChinaJavaWorld技术论坛 : Java语言*初级版</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="images/style.css" title="Integrated Styles">
@@ -98,7 +103,8 @@
                         <!-- div-->
                       </div></td>
                     <td nowrap="nowrap" width="1%">&nbsp;
-                        
+                    
+                    <a href="${pageContext.request.contextPath}/delete?id=${s.id}&pid=${s.pid}&isleaf=${s.isleaf}&url=${pageContext.request.requestURL}">DEL</a>    
                       &nbsp;</td>
                     <td class="jive-thread-name" width="95%"><a id="jive-thread-1" href="${pageContext.request.contextPath}/list?method=details&id=${s.id}">${s.gradexx} ${s.title}</a></td>
                     <td class="jive-author" nowrap="nowrap" width="1%"><span class=""> <a href="http://bbs.chinajavaworld.com/profile.jspa?userID=226030">jeesk</a> </span></td>
