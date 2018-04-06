@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import io.github.jeesk.Article;
-import io.github.jeesk.util.DBUtils;
+import io.github.jeesk.myutil.DBUtils;
 
 /**
  * ArticleFlatServlet.java

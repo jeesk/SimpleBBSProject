@@ -1,14 +1,19 @@
 /*
  * Copyright notice
  */
-package io.github.jeesk.util;
+package io.github.jeesk.myutil;
 
+import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import org.apache.commons.dbcp2.BasicDataSourceFactory;
 
 /**
  * DBUtils.java
@@ -20,85 +25,82 @@ import java.sql.Statement;
 public enum DBUtils {
 
 	INSTANCE;
+	private static DataSource dataSource = null;
 	static {
 
+		Properties p = new Properties();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-
+			// 这儿使用的是dbcp连接池
+			InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("dbcp.properties");
+			p.load(in);
+			dataSource = BasicDataSourceFactory.createDataSource(p);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 
 	public static Connection getConnection() {
-		Connection conn = null;
-		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bbs", "root", "admin");
-		} catch (SQLException e) {
 
+		try {
+			return dataSource.getConnection();
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		return conn;
+		return null;
 	}
 
 	public static Statement createStmt(Connection conn) {
 
-		Statement stmt = null;
 		try {
-			stmt = conn.createStatement();
+			return conn.createStatement();
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
-		return stmt;
+		return null;
 	}
-	public static PreparedStatement prepareStmt(Connection conn,String sql) {
-		
-		PreparedStatement prepareStatement=null;
+
+	public static PreparedStatement prepareStmt(Connection conn, String sql) {
+
 		try {
-			prepareStatement = conn.prepareStatement(sql);
-			return prepareStatement;
+			return conn.prepareStatement(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return prepareStatement;
-		
-		
+		return null;
+
 	}
 
 	public static ResultSet executeQuery(String sql, Statement stmt) {
 
-		ResultSet rs = null;
 		try {
-			rs =	stmt.executeQuery(sql);
-			return rs;
+
+			return stmt.executeQuery(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		return null;
 	}
-	
 
-	
-	public static void close(Connection conn,Statement stmt,ResultSet rs) {
-		if(conn != null) {
+	public static void close(Connection conn, Statement stmt, ResultSet rs) {
+		if (conn != null) {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				
+
 				e.printStackTrace();
-			}finally {
-				if(stmt != null) {
+			} finally {
+				if (stmt != null) {
 					try {
 						stmt.close();
 					} catch (SQLException e) {
 						e.printStackTrace();
-					}finally {
-						
-						if(rs!=null) {
+					} finally {
+
+						if (rs != null) {
 							try {
 								rs.close();
 							} catch (SQLException e) {
@@ -109,8 +111,7 @@ public enum DBUtils {
 				}
 			}
 		}
-		
-		
+
 	}
 
 }
