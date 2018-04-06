@@ -1,7 +1,7 @@
 /*
  * Copyright notice
  */
-package io.github.jeesk;
+package io.github.jeesk.domain;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +26,6 @@ public class Article {
 	private Date pdate;
 	private boolean isleaf;
 	private int grade;
-	private String gradexx;
 	public void initArticleFromRs(ResultSet rs) {
 		
 		try {

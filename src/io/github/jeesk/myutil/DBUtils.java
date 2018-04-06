@@ -86,10 +86,7 @@ public enum DBUtils {
 	}
 
 	
-	
-	
-	
-	
+
 	public static void close(Connection conn, Statement stmt, ResultSet rs) {
 		if (conn != null) {
 			try {

@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import io.github.jeesk.Article;
+import io.github.jeesk.domain.Article;
 import io.github.jeesk.myutil.DBUtils;
 
 /**
@@ -41,6 +40,7 @@ public class ArticleFlatDetailsServlet extends HttpServlet {
 		Article article = null;
 		Connection conn = DBUtils.INSTANCE.getConnection();
 		int id = Integer.valueOf(req.getParameter("id"));
+		System.out.println(id);
 		String sql = "select * from article where rootid = ? order by pdate asc";
 		ResultSet rs = null;
 		PreparedStatement ps=null;
